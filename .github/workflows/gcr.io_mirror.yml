@@ -1,17 +1,17 @@
 name: gcr.io_mirror
 
-on: 
+on:
+  schedule:
+    - cron: '0 16 * * *'
   issues:
     types: [opened, edited]
   label:
     types: [created]
   workflow_dispatch:
 
-
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: contains(github.event.issue.labels.*.name, 'porter')
     steps:
       - name: 检出代码
         uses: actions/checkout@v3
